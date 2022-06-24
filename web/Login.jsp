@@ -4,11 +4,27 @@
     Author     : Admin
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+<%
+    Account auth = (Account) request.getSession().getAttribute("auth");
+    if (auth != null) {
+        request.setAttribute("person", auth);
+    }
+    ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+    List<Cart> cartProduct = null;
+    if (cart_list != null) {
+       
+        request.setAttribute("cart_list", cart_list);
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +78,7 @@
                             <!-- Email input -->
                             <div class="form-outline mb-4">
 
-                                <label class="form-label" for="form3Example3">Email address</label>
+                                <label class="form-label" for="form3Example3">User name</label>
                                 <input name="user"  type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
                             </div>
 

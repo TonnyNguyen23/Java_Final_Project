@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/Home.jsp</file>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/Detail.jsp</file>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/index.jsp</file>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/ManagerProduct.jsp</file>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/includes/Menu.jsp</file>
-            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/js/manager.js</file>
+            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/web/Cart.jsp</file>
+            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/src/java/control/CartControl.java</file>
+            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/src/java/entity/Cart.java</file>
+            <file>file:/D:/Subject/JavaWebApplication/Day%2009/ProjectFinal/src/java/control/CategoryControl.java</file>
         </group>
     </open-files>
 </project-private>

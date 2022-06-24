@@ -35,7 +35,7 @@
                                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <div class="form-outline flex-fill mb-0">
 
-                                                    <label class="form-label" for="form3Example1c">Your Name</label>
+                                                    <label class="form-label" for="form3Example1c">Your User Name</label>
                                                     <input name="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="">
                                                 </div>
                                             </div>

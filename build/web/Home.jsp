@@ -1,5 +1,22 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    Account auth = (Account) request.getSession().getAttribute("acc");
+    if (auth != null) {
+        request.setAttribute("person", auth);
+    }
+    ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+    List<Cart> cartProduct = null;
+    if (cart_list != null) {
+       
+        request.setAttribute("cart_list", cart_list);
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +62,7 @@
                                                 <p class="btn btn-danger btn-block">${o.price} $</p>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                                <a href="add-to-cart?pid=${o.id}" class="btn btn-success btn-block">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>

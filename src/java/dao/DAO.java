@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
 
 import context.DBContext;
 import entity.Account;
+import entity.Cart;
 import entity.Category;
 import entity.Product;
 import java.sql.Connection;
@@ -17,13 +17,21 @@ import java.util.List;
 
 /**
  *
- * @author trinh
+ * @author Admin
  */
 public class DAO {
 
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+    private Connection conn = null;
+    private PreparedStatement ps = null;
+    private ResultSet rs = null;
+
+    public DAO() {
+    }
+
+    public DAO(Connection con) {
+        super();
+        this.conn = con;
+    }
 
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
@@ -43,6 +51,55 @@ public class DAO {
         } catch (Exception e) {
         }
         return list;
+    }
+
+    public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
+        List<Cart> shoe = new ArrayList<>();
+        try {
+            if (cartList.size() > 0) {
+                for (Cart item : cartList) {
+                    String query = "select * from product where id=?";
+                    ps = this.conn.prepareStatement(query);
+                    ps.setInt(1, item.getId());
+                    rs = ps.executeQuery();
+
+                    while (rs.next()) {
+                        Cart row = new Cart();
+                        row.setId(rs.getInt("id"));
+                        row.setName(rs.getString("name"));
+                        row.setPrice(rs.getDouble("price") * item.getQuantity());
+                        row.setQuantity(item.getQuantity());
+
+                        shoe.add(row);
+                    }
+
+                }
+            }
+
+        } catch (Exception e) {
+        }
+        return shoe;
+    }
+
+    public double getTotalCartPrice(ArrayList<Cart> cartList) {
+        double sum = 0;
+        try {
+            if (cartList.size() > 0) {
+                for (Cart item : cartList) {
+                    String query = "select price from product where id=?";
+                    ps = this.conn.prepareStatement(query);
+                    ps.setInt(1, item.getId());
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        sum += rs.getDouble("price") * item.getQuantity();
+                    }
+
+                }
+            }
+
+        } catch (Exception e) {
+        }
+        return sum;
     }
 
     public List<Product> getTop3() {
@@ -175,6 +232,30 @@ public class DAO {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public Product getSingleProduct(int id) {
+        Product row = null;
+        try {
+            String query = "select * from product where id=? ";
+
+            ps = this.conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                row = new Product();
+                row.setId(rs.getInt("id"));
+                row.setName(rs.getString("name"));
+                row.setPrice(rs.getDouble("price"));
+                row.setImage(rs.getString("image"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return row;
     }
 
     public List<Category> getAllCategory() {
@@ -324,15 +405,4 @@ public class DAO {
         } catch (Exception e) {
         }
     }
-
-    public static void main(String[] args) {
-        DAO dao = new DAO();
-        List<Product> list = dao.getAllProduct();
-        List<Category> listC = dao.getAllCategory();
-
-        for (Category o : listC) {
-            System.out.println(o);
-        }
-    }
-
 }

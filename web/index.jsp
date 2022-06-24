@@ -1,5 +1,21 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    Account auth = (Account) request.getSession().getAttribute("acc");
+    if (auth != null) {
+        request.setAttribute("person", auth);
+    }
+    ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+    List<Cart> cartProduct = null;
+    if (cart_list != null) {
+       
+        request.setAttribute("cart_list", cart_list);
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -9,13 +9,14 @@ package entity;
  *
  * @author trinh
  */
-public class Product {
+public class Product extends Category{
     private int id;
     private String name;
     private String image;
     private double price;
     private String title;
     private String description;
+    public int amount;
 
     public Product() {
     }
@@ -28,6 +29,18 @@ public class Product {
         this.title = title;
         this.description = description;
     }
+
+    public Product(int id, String name, String image, double price, String title, String description, int amount) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.title = title;
+        this.description = description;
+        this.amount = amount;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -76,6 +89,16 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+    
+    
 
     @Override
     public String toString() {
